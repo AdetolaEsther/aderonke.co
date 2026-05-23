@@ -29,7 +29,7 @@ const Navbar = () => {
                         href="/"
                         className="font-medium text-[24px] leading-[31px] tracking-[2px] text-[#735B24] "
                     >
-                        ADERONKE.CO
+                    ARONKE.CO
                     </Link>
                 </div>
 
@@ -38,7 +38,7 @@ const Navbar = () => {
                         href="/"
                         className="font-medium text-[18px] tracking-[2px] text-[#735B24]"
                     >
-                        ADERONKE.CO
+                        ARONKE.CO
                     </Link>
                 </div>
 

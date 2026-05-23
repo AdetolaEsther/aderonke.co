@@ -46,20 +46,37 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 flex items-center">
                     <div className="max-w-2xl px-6 md:px-12 text-left">
+                        {/* Badge */}
                         <div className="mb-4 px-3 py-1 w-fit rounded-full bg-white/70 backdrop-blur text-[12px] font-medium text-[#735B24]">
                             HANDCRAFTED LEGACY
                         </div>
-                        <h1 className="text-white text-[40px] md:text-[56px] font-semibold leading-tight">
+
+                        {/* Heading (GRADIENT TEXT) */}
+                        <h1
+                            className="text-[40px] md:text-[56px] font-semibold leading-tight 
+      bg-gradient-to-r from-[#1f1f1f] via-[#3a2f1f] to-[#735B24] 
+      bg-clip-text text-transparent"
+                        >
                             Refined Jewelry for the Modern Wardrobe.
                         </h1>
-                        <p className="mt-4 text-white/80 text-[16px] md:text-[18px] max-w-md">
+
+                        {/* Subtext (softer gradient) */}
+                        <p
+                            className="mt-4 text-[16px] md:text-[18px] max-w-md
+      bg-gradient-to-r from-[#3a3a3a] to-[#6b5b45]
+      bg-clip-text text-transparent"
+                        >
                             Jewelry made for your story, not just your style.
                         </p>
-                        {/* CTA */}{" "}
+
+                        {/* CTA */}
                         <div className="mt-6">
-                            <button className="bg-[#735B24] text-white px-7 py-3 rounded-lg text-sm hover:bg-[#5f491d] transition">
+                            <a
+                                href="/collections"
+                                className="bg-[#735B24] text-white px-7 py-3 rounded-lg text-sm hover:bg-[#5f491d] transition"
+                            >
                                 SHOP COLLECTION
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -76,31 +93,32 @@ export default function Home() {
                         </h2>
                     </div>
 
-                    <a
+                    <Link
                         href="/collections"
                         className="text-[14px] md:text-[16px] text-[#5B5B5B] hover:text-[#735B24] transition underline underline-offset-8"
                     >
                         View All Collections →
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8">
                     {collections.map((item, index) => (
-                        <div
+                        <Link
                             key={index}
-                            className="relative w-full h-[260px] md:h-[380px] rounded-2xl overflow-hidden group"
+                            href={`/collections/${item.slug || item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                            className="block"
                         >
-                            <Image
-                                src={item.image}
-                                alt={item.title}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
+                            <div className="relative w-full h-[260px] md:h-[380px] rounded-2xl overflow-hidden group cursor-pointer">
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
 
-                            <div className="absolute inset-0 bg-black/10" />
-
-                          
-                        </div>
+                                <div className="absolute inset-0 bg-black/10" />
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -136,7 +154,6 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-
             <div className="bg-[#fdeaea] text-[#5B5B5B] w-full py-16 mt-8 rounded-mb">
                 <div className="max-w-4xl mx-auto px-6 md:px-10">
                     <div className="flex flex-col items-start text-left">
@@ -162,18 +179,15 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
             <div className="bg-[#f1ede9] text-gray-500 w-full py-16">
                 <div className="max-w-[1000px] mx-auto px-4 md:px-6">
-                    <div className="flex flex-col md:flex-row justify-between gap-10 text-left">
-                        {" "}
+                    {/* TOP GRID */}
+                    <div className="flex flex-col md:flex-row justify-between gap-12 text-left">
+                        {/* BRAND */}
                         <div>
-                            <div className="flex items-center gap-2 justify-start">
-                                {" "}
-                                <h2 className="font-medium text-[24px] leading-[31px] tracking-[2px] text-[#735B24]">
-                                    ADERONKE.CO
-                                </h2>
-                            </div>
+                            <h2 className="font-medium text-[24px] leading-[31px] tracking-[2px] text-[#735B24]">
+                                ARONKE.CO
+                            </h2>
 
                             <div className="mt-4 text-[14px] leading-6 max-w-[300px]">
                                 <p>
@@ -182,49 +196,82 @@ export default function Home() {
                                 </p>
                             </div>
                         </div>
-                        <div className="mt-4 text-[14px] max-w-[300px]">
+
+                        {/* SHOP */}
+                        <div className="text-[14px] max-w-[300px]">
                             <h4 className="font-bold mb-3 text-[#735B24]">
                                 SHOP
                             </h4>
 
                             <div className="flex flex-col space-y-2">
-                                <p>All Jewelry</p>
-                                <p>New Arrivals</p>
-                                <p>Best Sellers</p>
-                                <p>Gifts</p>
+                                {[
+                                    "All Jewelry",
+                                    "New Arrivals",
+                                    "Best Sellers",
+                                    "Gifts",
+                                ].map((item) => (
+                                    <p
+                                        key={item}
+                                        className="hover:text-[#735B24] cursor-pointer transition"
+                                    >
+                                        {item}
+                                    </p>
+                                ))}
                             </div>
                         </div>
-                        <div className="mt-4 text-[14px] max-w-[300px]">
+
+                        {/* SOCIALS */}
+                        <div className="text-[14px] max-w-[300px]">
                             <h4 className="font-bold mb-3 text-[#735B24]">
                                 SOCIALS
                             </h4>
 
                             <div className="flex flex-col space-y-2">
-                                <p>Instagram</p>
-                                <p>Facebook</p>
-                                <p>Twitter</p>
-                                <p> WhatsApp</p>
+                                {[
+                                    "Instagram",
+                                    "Facebook",
+                                    "Twitter",
+                                    "WhatsApp",
+                                ].map((item) => (
+                                    <p
+                                        key={item}
+                                        className="hover:text-[#735B24] cursor-pointer transition"
+                                    >
+                                        {item}
+                                    </p>
+                                ))}
                             </div>
                         </div>
-                        <div className="mt-4 text-[14px] leading-6 max-w-[300px]">
+
+                        {/* SUPPORT */}
+                        <div className="text-[14px] max-w-[300px]">
                             <h4 className="font-bold mb-3 text-[#735B24]">
                                 SUPPORT
                             </h4>
 
                             <div className="flex flex-col space-y-2">
-                                <p>Contact Us</p>
-                                <p>Shipping & Returns</p>
-                                <p>Jewelry Care</p>
-                                <p> FAQ</p>
+                                {[
+                                    "Contact Us",
+                                    "Shipping & Returns",
+                                    "Jewelry Care",
+                                    "FAQ",
+                                ].map((item) => (
+                                    <p
+                                        key={item}
+                                        className="hover:text-[#735B24] cursor-pointer transition"
+                                    >
+                                        {item}
+                                    </p>
+                                ))}
                             </div>
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-start md:items-center justify-center gap-6 text-gray-400 mt-8 border-t border-gray-300 pt-6">
-                        {" "}
-                        <p className="whitespace-nowrap">
-                            © {new Date().getFullYear()} © Aderonke.co. All
-                            rights reserved.
+                    {/* BOTTOM */}
+                    <div className="flex flex-col items-start md:items-center justify-center gap-6 text-gray-400 mt-10 border-t border-gray-300 pt-6">
+                        <p className="text-sm text-center">
+                            © {new Date().getFullYear()} Aronke.co. All rights
+                            reserved.
                         </p>
                     </div>
                 </div>
